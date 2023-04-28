@@ -14,6 +14,6 @@ public class Main {
         String codigo = Files.readString(Path.of("./src/main/resources/codigo.txt"));
 
         List<Token> resultado = analisadorLexico.analisar(codigo);
-        System.out.println(resultado);
+        resultado.forEach(System.out::println);
     }
 }
