@@ -42,7 +42,7 @@ public class Menu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         button.setEnabled(false);
         List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
-        System.out.println(analises);
+        analises.forEach(System.out::println);
         button.setEnabled(true);
     }
 }
