@@ -2,6 +2,7 @@ package com.unesc.compilador;
 
 import com.unesc.compilador.analisadorlexico.base.AnalisadorLexico;
 import com.unesc.compilador.analisadorlexico.base.Token;
+import com.unesc.compilador.menu.Menu;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,10 +11,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        AnalisadorLexico analisadorLexico = new AnalisadorLexico();
-        String codigo = Files.readString(Path.of("./src/main/resources/codigo.txt"));
-
-        List<Token> resultado = analisadorLexico.analisar(codigo);
-        System.out.println(resultado);
+        new Menu();
     }
 }
