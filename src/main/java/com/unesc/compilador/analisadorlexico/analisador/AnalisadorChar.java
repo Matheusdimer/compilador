@@ -16,13 +16,26 @@ public class AnalisadorChar extends AbstractAnalisadorExpressao {
     @Override
     public Token analisar(PointerController controller) {
         char char1 = controller.getNext();
+
+        if (!controller.hasNext()) {
+            throw new RegraLexaException("Término inesperado do token de caractere",
+                    Character.toString(char1), controller.getRow());
+        }
+
         char char2 = controller.getNext();
+
+        if (!controller.hasNext()) {
+            throw new RegraLexaException("Término inesperado do token de caractere",
+                    Character.toString(char2), controller.getRow());
+        }
+
         char char3 = controller.getNext();
 
         String token = "" + char1 + char2 + char3;
 
         if (char3 != '\'') {
-            throw new RegraLexaException("Esperado ' para fechamento do caracter, porém foi dado " + char3, token, controller.getRow());
+            throw new RegraLexaException("Esperado ' para fechamento do caracter, " +
+                    "porém foi dado o caractere '" + char3 + "'.", token, controller.getRow());
         }
 
         return new Token(token, 39, controller.getRow());
