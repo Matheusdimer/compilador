@@ -2,6 +2,7 @@ package com.unesc.compilador.analisadorlexico.analisador;
 
 import com.unesc.compilador.analisadorlexico.base.AbstractAnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
+import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public class AnalisadorSimbolos extends AbstractAnalisadorExpressao {
         String token = buffer.toString();
 
         if (codigo == null) {
-            throw new RuntimeException("Token " + token + " não reconhecido");
+            throw new RegraLexaException("Token " + token + " não reconhecido", token, controller.getRow());
         }
 
         return new Token(token, codigo, controller.getRow());
