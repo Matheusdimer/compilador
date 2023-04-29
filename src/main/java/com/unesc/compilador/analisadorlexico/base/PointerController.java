@@ -11,6 +11,7 @@ public class PointerController {
 
     public void setString(String string) {
         this.string = string.toCharArray();
+        reset();
     }
 
     public boolean hasNext() {
@@ -50,6 +51,12 @@ public class PointerController {
 
     public void restoreCheckpoin() {
         pointer = checkpoint;
+    }
+
+    private void reset() {
+        pointer = -1;
+        row = 1;
+        checkpoint = 0;
     }
 
     @Override
