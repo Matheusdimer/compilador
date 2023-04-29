@@ -1,12 +1,12 @@
 package com.unesc.compilador.analisadorlexico.analisador;
 
-import com.unesc.compilador.analisadorlexico.base.AbstractAnalisadorExpressao;
+import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
 import java.util.regex.Pattern;
 
-public class AnalisadorComentario extends AbstractAnalisadorExpressao {
+public class AnalisadorComentario extends AnalisadorExpressao {
     public AnalisadorComentario() {
         super(1, Pattern.compile("#"));
     }

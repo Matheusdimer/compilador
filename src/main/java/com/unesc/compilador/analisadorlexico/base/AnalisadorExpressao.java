@@ -2,12 +2,12 @@ package com.unesc.compilador.analisadorlexico.base;
 
 import java.util.regex.Pattern;
 
-public abstract class AbstractAnalisadorExpressao implements Comparable<AbstractAnalisadorExpressao> {
+public abstract class AnalisadorExpressao implements Comparable<AnalisadorExpressao> {
 
     private final int prioridade;
     private final Pattern pattern;
 
-    public AbstractAnalisadorExpressao(int prioridade, Pattern pattern) {
+    public AnalisadorExpressao(int prioridade, Pattern pattern) {
         this.prioridade = prioridade;
         this.pattern = pattern;
     }
@@ -19,7 +19,7 @@ public abstract class AbstractAnalisadorExpressao implements Comparable<Abstract
     public abstract Token analisar(PointerController controller);
 
     @Override
-    public int compareTo(AbstractAnalisadorExpressao other) {
+    public int compareTo(AnalisadorExpressao other) {
         if (prioridade == other.prioridade) {
             return 0;
         }

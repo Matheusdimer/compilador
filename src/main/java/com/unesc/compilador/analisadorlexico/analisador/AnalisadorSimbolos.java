@@ -1,6 +1,6 @@
 package com.unesc.compilador.analisadorlexico.analisador;
 
-import com.unesc.compilador.analisadorlexico.base.AbstractAnalisadorExpressao;
+import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
 import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class AnalisadorSimbolos extends AbstractAnalisadorExpressao {
+public class AnalisadorSimbolos extends AnalisadorExpressao {
     private final Map<String, Integer> tokensSimples = new HashMap<>();
 
     public AnalisadorSimbolos() {

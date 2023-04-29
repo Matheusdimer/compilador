@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 public class AnalisadorLexico {
     
-    private final Set<AbstractAnalisadorExpressao> analisadores = new TreeSet<>();
+    private final Set<AnalisadorExpressao> analisadores = new TreeSet<>();
     private final PointerController controller = new PointerController();
     private final List<Token> tokens = new LinkedList<>();
 
@@ -33,7 +33,7 @@ public class AnalisadorLexico {
                 continue;
             }
 
-            for (AbstractAnalisadorExpressao analisador : analisadores) {
+            for (AnalisadorExpressao analisador : analisadores) {
                 if (analisador.matchRegex(next)) {
                     controller.back();
                     controller.saveCheckpoint();

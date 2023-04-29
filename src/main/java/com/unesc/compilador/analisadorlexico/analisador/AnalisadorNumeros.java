@@ -1,14 +1,12 @@
 package com.unesc.compilador.analisadorlexico.analisador;
 
-import com.unesc.compilador.analisadorlexico.base.AbstractAnalisadorExpressao;
+import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
-public class AnalisadorNumeros extends AbstractAnalisadorExpressao {
+public class AnalisadorNumeros extends AnalisadorExpressao {
 
     private static final int IDENTIFICADOR_INT_CODE = 37;
     private static final int IDENTIFICADOR_REAL_CODE = 36;

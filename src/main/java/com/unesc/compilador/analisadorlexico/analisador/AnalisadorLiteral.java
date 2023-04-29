@@ -1,13 +1,13 @@
 package com.unesc.compilador.analisadorlexico.analisador;
 
-import com.unesc.compilador.analisadorlexico.base.AbstractAnalisadorExpressao;
+import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
 import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
 import java.util.regex.Pattern;
 
-public class AnalisadorLiteral extends AbstractAnalisadorExpressao {
+public class AnalisadorLiteral extends AnalisadorExpressao {
 
     public AnalisadorLiteral() {
         super(5, Pattern.compile("\""));
