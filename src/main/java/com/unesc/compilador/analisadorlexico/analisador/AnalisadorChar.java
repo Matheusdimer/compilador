@@ -16,18 +16,10 @@ public class AnalisadorChar extends AbstractAnalisadorExpressao {
     @Override
     public Token analisar(PointerController controller) {
         char char1 = controller.getNext();
-
-        if (!controller.hasNext()) {
-            throw new RegraLexaException("Término inesperado do token de caractere",
-                    Character.toString(char1), controller.getRow());
-        }
+        checarTerminoInesperado(controller, char1);
 
         char char2 = controller.getNext();
-
-        if (!controller.hasNext()) {
-            throw new RegraLexaException("Término inesperado do token de caractere",
-                    Character.toString(char2), controller.getRow());
-        }
+        checarTerminoInesperado(controller, char2);
 
         char char3 = controller.getNext();
 
@@ -39,5 +31,17 @@ public class AnalisadorChar extends AbstractAnalisadorExpressao {
         }
 
         return new Token(token, 39, controller.getRow());
+    }
+
+    private void checarTerminoInesperado(PointerController controller, char character) {
+        if (character == '\n') {
+            throw new RegraLexaException("Quebra de linha inesperada dentro do token de caracter",
+                    Character.toString(character), controller.getRow());
+        }
+
+        if (!controller.hasNext()) {
+            throw new RegraLexaException("Término inesperado do token de caractere",
+                    Character.toString(character), controller.getRow());
+        }
     }
 }
