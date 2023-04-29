@@ -32,6 +32,10 @@ public class PointerController {
         pointer--;
     }
 
+    public void back(int quantity) {
+        pointer -= quantity;
+    }
+
     public void restoreTo(int pointer) {
         this.pointer = pointer;
     }
