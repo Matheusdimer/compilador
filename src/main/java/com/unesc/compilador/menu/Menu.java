@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Menu extends JFrame implements ActionListener {
     private JTextArea textArea;
@@ -39,8 +40,13 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
-            analises.forEach(System.out::println);
-        } finally {
+            JOptionPane.showMessageDialog(this, analises.stream()
+                    .map(Token::toString)
+                    .collect(Collectors.joining("\n")));
+        } catch (RuntimeException exception) {
+            JOptionPane.showMessageDialog(this, exception.getMessage());
+        }
+        finally {
             button.setEnabled(true);
         }
     }
