@@ -33,13 +33,16 @@ public class AnalisadorIndentificadores extends AbstractAnalisadorExpressao {
         palavrasReservadas.put("end", 19);
         palavrasReservadas.put("else", 20);
         palavrasReservadas.put("do", 21);
-        palavrasReservadas.put("declaravariavies", 22);
+        palavrasReservadas.put("declaravariaveis", 22);
         palavrasReservadas.put("const", 23);
         palavrasReservadas.put("char", 24);
         palavrasReservadas.put("chamaprocedure", 25);
         palavrasReservadas.put("begin", 26);
         palavrasReservadas.put("array", 27);
         palavrasReservadas.put("and", 28);
+        palavrasReservadas.put("integer", 14);
+        palavrasReservadas.put("string", 5);
+        palavrasReservadas.put("real", 7);
     }
 
     @Override
