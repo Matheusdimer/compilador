@@ -45,6 +45,7 @@ public class Menu extends JFrame implements ActionListener {
                     .collect(Collectors.joining("\n")));
         } catch (RuntimeException exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());
+            exception.printStackTrace();
         }
         finally {
             button.setEnabled(true);

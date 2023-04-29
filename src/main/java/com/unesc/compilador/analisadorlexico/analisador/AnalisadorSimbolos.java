@@ -8,12 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class AnalisadorTokenSimples extends AbstractAnalisadorExpressao {
+public class AnalisadorSimbolos extends AbstractAnalisadorExpressao {
     private final Map<String, Integer> tokensSimples = new HashMap<>();
 
-    public AnalisadorTokenSimples() {
+    public AnalisadorSimbolos() {
         super(10, Pattern.compile("[^a-zA-Z0-9\\s]*$"));
         tokensSimples.put("=", 31);
+        tokensSimples.put(">=", 29);
+        tokensSimples.put("<=", 33);
+        tokensSimples.put("<>", 32);
+        tokensSimples.put("..", 45);
         tokensSimples.put("+", 35);
         tokensSimples.put("]", 40);
         tokensSimples.put("[", 41);
@@ -29,8 +33,24 @@ public class AnalisadorTokenSimples extends AbstractAnalisadorExpressao {
 
     @Override
     public Token analisar(PointerController controller) {
-        String token = Character.toString(controller.getNext());
-        Integer codigo = tokensSimples.get(token);
+        StringBuilder buffer = new StringBuilder();
+
+        while (controller.hasNext()) {
+            char token = controller.getNext();
+
+            if (!matchRegex(token)) {
+                break;
+            }
+
+            buffer.append(token);
+        }
+
+        if (controller.hasNext()) {
+            controller.back();
+        }
+
+        Integer codigo = tokensSimples.get(buffer.toString());
+        String token = buffer.toString();
 
         if (codigo == null) {
             throw new RuntimeException("Token " + token + " não reconhecido");

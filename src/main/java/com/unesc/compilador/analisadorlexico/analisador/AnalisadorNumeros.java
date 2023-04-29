@@ -14,7 +14,7 @@ public class AnalisadorNumeros extends AbstractAnalisadorExpressao {
     private static final int IDENTIFICADOR_REAL_CODE = 36;
 
     public AnalisadorNumeros() {
-        super(2, Pattern.compile("[0-9|.]"));
+        super(2, Pattern.compile("[0-9]"));
     }
 
     @Override
@@ -25,17 +25,16 @@ public class AnalisadorNumeros extends AbstractAnalisadorExpressao {
         while (controller.hasNext()) {
             char next = controller.getNext();
 
-            if (!matchRegex(next)) {
+            if (!matchRegex(next) && next != '.') {
                 break;
             }
             if (next == '.') {
                 if (controller.hasNext()) {
                     char next2 = controller.getNext();
+                    controller.back();
                     if (next2 == '.') {
-                        controller.back(2);
                         break;
                     } else {
-                        controller.back();
                         isReal = true;
                     }
                 }

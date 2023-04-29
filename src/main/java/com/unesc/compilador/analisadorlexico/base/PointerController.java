@@ -54,11 +54,6 @@ public class PointerController {
 
     @Override
     public String toString() {
-        return "PointerController{" +
-                "pointer=" + pointer +
-                ", checkpoint=" + checkpoint +
-                ", row=" + row +
-                ", string=" + Arrays.toString(string) +
-                '}';
+        return "pointer=" + pointer + ", row=" + row + ", char=" + string[pointer];
     }
 }
