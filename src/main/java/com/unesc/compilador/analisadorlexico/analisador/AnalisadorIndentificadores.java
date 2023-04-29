@@ -42,7 +42,6 @@ public class AnalisadorIndentificadores extends AnalisadorExpressao {
         palavrasReservadas.put("and", 28);
         palavrasReservadas.put("integer", 14);
         palavrasReservadas.put("string", 5);
-        palavrasReservadas.put("real", 7);
     }
 
     @Override
