@@ -16,21 +16,17 @@ public class Menu extends JFrame implements ActionListener {
     public Menu() {
         super("Digite o código");
 
-        // Cria o JTextArea e adiciona uma barra de rolagem vertical
         textArea = new JTextArea(10, 40);
         JScrollPane scrollPane = new JScrollPane(textArea);
 
-        // Cria o botão e adiciona o listener para o evento de clique
         button = new JButton("Analisar");
         button.addActionListener(this);
 
-        // Adiciona os componentes ao painel principal
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(scrollPane, BorderLayout.CENTER);
         panel.add(button, BorderLayout.SOUTH);
 
-        // Adiciona o painel principal ao JFrame
         setContentPane(panel);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,8 +37,11 @@ public class Menu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         button.setEnabled(false);
-        List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
-        analises.forEach(System.out::println);
-        button.setEnabled(true);
+        try {
+            List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
+            analises.forEach(System.out::println);
+        } finally {
+            button.setEnabled(true);
+        }
     }
 }

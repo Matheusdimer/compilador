@@ -1,6 +1,7 @@
 package com.unesc.compilador.analisadorlexico.base;
 
 import com.unesc.compilador.analisadorlexico.analisador.AnalisadorIndentificadores;
+import com.unesc.compilador.analisadorlexico.analisador.AnalisadorTokenSimples;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +16,7 @@ public class AnalisadorLexico {
 
     public AnalisadorLexico() {
         analisadores.add(new AnalisadorIndentificadores());
+        analisadores.add(new AnalisadorTokenSimples());
     }
     
     public List<Token> analisar(String codigo) {
