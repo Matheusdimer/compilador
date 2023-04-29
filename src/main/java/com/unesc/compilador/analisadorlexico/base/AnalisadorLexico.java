@@ -1,5 +1,6 @@
 package com.unesc.compilador.analisadorlexico.base;
 
+import com.unesc.compilador.analisadorlexico.analisador.AnalisadorComentario;
 import com.unesc.compilador.analisadorlexico.analisador.AnalisadorIndentificadores;
 import com.unesc.compilador.analisadorlexico.analisador.AnalisadorSimbolos;
 import com.unesc.compilador.analisadorlexico.analisador.AnalisadorNumeros;
@@ -19,6 +20,7 @@ public class AnalisadorLexico {
         analisadores.add(new AnalisadorIndentificadores());
         analisadores.add(new AnalisadorNumeros());
         analisadores.add(new AnalisadorSimbolos());
+        analisadores.add(new AnalisadorComentario());
     }
     
     public List<Token> analisar(String codigo) {
@@ -36,7 +38,11 @@ public class AnalisadorLexico {
                 if (analisador.matchRegex(next)) {
                     controller.back();
                     controller.saveCheckpoint();
-                    tokens.add(analisador.analisar(controller));
+                    Token token = analisador.analisar(controller);
+
+                    if (token != null) {
+                        tokens.add(token);
+                    }
                     break;
                 }
             }

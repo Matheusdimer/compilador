@@ -15,7 +15,7 @@ public class AnalisadorIndentificadores extends AbstractAnalisadorExpressao {
     private final Map<String, Integer> palavrasReservadas = new HashMap<>();
 
     public AnalisadorIndentificadores() {
-        super(1, Pattern.compile("[a-zA-Z]"));
+        super(2, Pattern.compile("[a-zA-Z]"));
         palavrasReservadas.put("write", 0);
         palavrasReservadas.put("while", 1);
         palavrasReservadas.put("until", 2);

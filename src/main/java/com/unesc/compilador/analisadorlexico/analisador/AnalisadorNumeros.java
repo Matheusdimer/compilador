@@ -14,7 +14,7 @@ public class AnalisadorNumeros extends AbstractAnalisadorExpressao {
     private static final int IDENTIFICADOR_REAL_CODE = 36;
 
     public AnalisadorNumeros() {
-        super(2, Pattern.compile("[0-9]"));
+        super(3, Pattern.compile("[0-9]"));
     }
 
     @Override
