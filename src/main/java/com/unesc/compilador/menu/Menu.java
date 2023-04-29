@@ -45,9 +45,9 @@ public class Menu extends JFrame implements ActionListener {
                     .map(Token::toString)
                     .collect(Collectors.joining("\n")));
         } catch (RegraLexaException exception) {
-            String mensagem = String.format("Erro lexo:\nLinha: %d\nToken: %d\nMensagem: %s",
+            String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
-            JOptionPane.showMessageDialog(this, mensagem);
+            JOptionPane.showMessageDialog(this, mensagem, "Erro léxico", JOptionPane.ERROR_MESSAGE);
             exception.printStackTrace();
         }
         finally {
