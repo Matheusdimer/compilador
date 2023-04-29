@@ -1,6 +1,7 @@
 package com.unesc.compilador.menu;
 
 import com.unesc.compilador.analisadorlexico.base.AnalisadorLexico;
+import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
 import javax.swing.*;
@@ -43,8 +44,10 @@ public class Menu extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, analises.stream()
                     .map(Token::toString)
                     .collect(Collectors.joining("\n")));
-        } catch (RuntimeException exception) {
-            JOptionPane.showMessageDialog(this, exception.getMessage());
+        } catch (RegraLexaException exception) {
+            String mensagem = String.format("Erro lexo:\nLinha: %d\nToken: %d\nMensagem: %s",
+                    exception.getLinha(), exception.getToken(), exception.getMessage());
+            JOptionPane.showMessageDialog(this, mensagem);
             exception.printStackTrace();
         }
         finally {
