@@ -41,11 +41,10 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
+            analises.forEach(System.out::println);
             JOptionPane.showMessageDialog(this, analises.stream()
                     .map(Token::toString)
                     .collect(Collectors.joining("\n")));
-
-            analises.forEach(System.out::println);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
