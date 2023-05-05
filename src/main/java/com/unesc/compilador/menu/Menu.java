@@ -44,6 +44,8 @@ public class Menu extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, analises.stream()
                     .map(Token::toString)
                     .collect(Collectors.joining("\n")));
+
+            analises.forEach(System.out::println);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
