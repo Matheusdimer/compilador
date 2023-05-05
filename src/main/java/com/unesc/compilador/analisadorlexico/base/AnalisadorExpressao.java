@@ -13,7 +13,7 @@ public abstract class AnalisadorExpressao implements Comparable<AnalisadorExpres
     }
 
     public boolean matchRegex(char character) {
-        return pattern.matcher("" + character).matches();
+        return pattern.matcher(String.valueOf(character)).matches();
     }
 
     public abstract Token analisar(PointerController controller);

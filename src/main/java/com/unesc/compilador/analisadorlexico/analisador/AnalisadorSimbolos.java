@@ -30,13 +30,14 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
         tokensSimples.put(")", 49);
         tokensSimples.put("(", 50);
         tokensSimples.put("-", 52);
+        tokensSimples.put(".", 46);
     }
 
     @Override
     public Token analisar(PointerController controller) {
         StringBuilder buffer = new StringBuilder();
 
-        while (controller.hasNext()) {
+        while (controller.hasNext() && buffer.length() <= 2) {
             char token = controller.getNext();
 
             if (!matchRegex(token)) {
@@ -51,6 +52,13 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
         }
 
         Integer codigo = tokensSimples.get(buffer.toString());
+
+        if (codigo == null && buffer.length() == 2) {
+            buffer.deleteCharAt(1);
+            controller.back();
+            codigo = tokensSimples.get(buffer.toString());
+        }
+
         String token = buffer.toString();
 
         if (codigo == null) {

@@ -40,9 +40,6 @@ public class AnalisadorLiteral extends AnalisadorExpressao {
             throw new RegraLexaException("Literal precisa ser finalizado", buffer.toString(), controller.getRow());
         }
         buffer.append("\"");
-        if (controller.hasNext()) {
-            controller.back();
-        }
 
         return new Token(buffer.toString(), 13, controller.getRow());
     }
