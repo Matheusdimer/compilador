@@ -11,11 +11,13 @@ import java.util.regex.Pattern;
 
 public class AnalisadorSimbolos extends AnalisadorExpressao {
     private final Map<String, Integer> tokensSimples = new HashMap<>();
-    private AnalisadorNumeros analisadorNumeros = new AnalisadorNumeros();
+    private final AnalisadorNumeros analisadorNumeros = new AnalisadorNumeros();
 
     public AnalisadorSimbolos() {
         super(10, Pattern.compile("[^a-zA-Z0-9\\s]*$"));
         tokensSimples.put("=", 31);
+        tokensSimples.put(">", 30);
+        tokensSimples.put("<", 34);
         tokensSimples.put(">=", 29);
         tokensSimples.put("<=", 33);
         tokensSimples.put("<>", 32);
