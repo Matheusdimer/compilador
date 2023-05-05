@@ -25,10 +25,8 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token{" +
-                "token='" + token + '\'' +
+        return "token='" + token + '\'' +
                 ", codigo=" + codigo +
-                ", linha=" + linha +
-                '}';
+                ", linha=" + linha;
     }
 }
