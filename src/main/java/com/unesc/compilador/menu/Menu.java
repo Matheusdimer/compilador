@@ -41,6 +41,7 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
+            analises.forEach(System.out::println);
             JOptionPane.showMessageDialog(this, analises.stream()
                     .map(Token::toString)
                     .collect(Collectors.joining("\n")));
