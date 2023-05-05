@@ -60,6 +60,8 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
 
         if (controller.hasNext()) {
             controller.back();
+        } else if (controller.getCurrent() == '\n'){
+            controller.backRow();
         }
 
         return new Token(
