@@ -48,10 +48,10 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
             }
             if (token == '-' && controller.hasNext()) {
                 char next = controller.getNext();
-                if (analisadorNumeros.matchRegex(next)) {
+                if (this.analisadorNumeros.matchRegex(next)) {
                     controller.back();
                     controller.back();
-                    return analisadorNumeros.analisar(controller);
+                    return this.analisadorNumeros.analisar(controller);
                 }
                 controller.back();
             }
