@@ -2,6 +2,7 @@ package com.unesc.compilador.analisadorlexico.analisador;
 
 import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
+import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
 import java.util.HashMap;
@@ -64,10 +65,20 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
             controller.backRow();
         }
 
+        if (palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE) == IDENTIFICADOR_CODE) {
+            this.validate(buffer.toString(), controller);
+        }
+
         return new Token(
                 buffer.toString(),
                 palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE),
                 controller.getRow()
         );
+    }
+
+    private void validate(String numero, PointerController controller) {
+        if (numero.length() > 20) {
+            throw new RegraLexaException("Identificadores não podem ter mais que 20 caracteres.", numero, controller.getRow());
+        }
     }
 }

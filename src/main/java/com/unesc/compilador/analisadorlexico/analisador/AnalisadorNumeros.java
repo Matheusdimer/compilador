@@ -62,6 +62,9 @@ public class AnalisadorNumeros extends AnalisadorExpressao {
             if (v < 0) {
                 throw new RegraLexaException("Números reais não podem ser menores que 0.", numero, controller.getRow());
             }
+            if (numero.split("\\.")[1].length() > 2) {
+                throw new RegraLexaException("Números reais não podem ter mais que 2 casas decimais.", numero, controller.getRow());
+            }
         } else {
             int num = Integer.parseInt(numero);
             if (num > 10000) {
