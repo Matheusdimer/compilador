@@ -14,7 +14,7 @@ public class AnalisadorLexico {
     private final List<Token> tokens = new LinkedList<>();
 
     public AnalisadorLexico() {
-        analisadores.add(new AnalisadorIndentificadores());
+        analisadores.add(new AnalisadorIdentificadores());
         analisadores.add(new AnalisadorNumeros());
         analisadores.add(new AnalisadorSimbolos());
         analisadores.add(new AnalisadorComentario());

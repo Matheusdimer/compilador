@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class AnalisadorIndentificadores extends AnalisadorExpressao {
+public class AnalisadorIdentificadores extends AnalisadorExpressao {
 
     private static final int IDENTIFICADOR_CODE = 16;
 
     private final Map<String, Integer> palavrasReservadas = new HashMap<>();
 
-    public AnalisadorIndentificadores() {
+    public AnalisadorIdentificadores() {
         super(2, Pattern.compile("[a-zA-Z]"));
         palavrasReservadas.put("write", 0);
         palavrasReservadas.put("while", 1);
