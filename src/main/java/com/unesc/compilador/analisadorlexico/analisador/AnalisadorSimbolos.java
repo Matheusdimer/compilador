@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 public class AnalisadorSimbolos extends AnalisadorExpressao {
     private final Map<String, Integer> tokensSimples = new HashMap<>();
+    private AnalisadorNumeros analisadorNumeros = new AnalisadorNumeros();
 
     public AnalisadorSimbolos() {
         super(10, Pattern.compile("[^a-zA-Z0-9\\s]*$"));
@@ -42,6 +43,15 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
 
             if (!matchRegex(token)) {
                 break;
+            }
+            if (token == '-' && controller.hasNext()) {
+                char next = controller.getNext();
+                if (analisadorNumeros.matchRegex(next)) {
+                    controller.back();
+                    controller.back();
+                    return analisadorNumeros.analisar(controller);
+                }
+                controller.back();
             }
 
             buffer.append(token);

@@ -59,6 +59,14 @@ public class PointerController {
         checkpoint = 0;
     }
 
+    public char getCurrent() {
+        return string[pointer];
+    }
+
+    public void backRow() {
+        row--;
+    }
+
     @Override
     public String toString() {
         return "pointer=" + pointer + ", row=" + row + ", char=" + string[pointer];
