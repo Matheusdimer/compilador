@@ -18,6 +18,7 @@ public class Menu extends JFrame implements ActionListener {
     private final JTextArea lines;
     private final JButton button;
     private final JScrollPane jsp;
+    private Resultado resultado;
 
     public Menu() {
         setTitle("Digite o código");
@@ -76,7 +77,10 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            new Resultado(tokens);
+            if (resultado != null) {
+                resultado.setVisible(false);
+            }
+            resultado = new Resultado(tokens);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
