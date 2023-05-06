@@ -61,8 +61,6 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
 
         if (controller.hasNext()) {
             controller.back();
-        } else if (controller.getCurrent() == '\n'){
-            controller.backRow();
         }
 
         Integer codigoToken = palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE);
