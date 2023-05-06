@@ -65,20 +65,26 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
             controller.backRow();
         }
 
-        if (palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE) == IDENTIFICADOR_CODE) {
+        Integer codigoToken = palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE);
+
+        if (codigoToken == IDENTIFICADOR_CODE) {
             this.validate(buffer.toString(), controller);
         }
 
         return new Token(
                 buffer.toString(),
-                palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE),
+                codigoToken,
                 controller.getRow()
         );
     }
 
-    private void validate(String numero, PointerController controller) {
-        if (numero.length() > 20) {
-            throw new RegraLexaException("Identificadores não podem ter mais que 20 caracteres.", numero, controller.getRow());
+    private void validate(String identificador, PointerController controller) {
+        if (identificador.length() > 20) {
+            throw new RegraLexaException("Identificadores não podem ter mais que 20 caracteres.", identificador, controller.getRow());
+        }
+
+        if (!identificador.matches("[a-zA-Z]")) {
+            throw new RegraLexaException("Identificadores não podem ter caracteres especiais.", identificador, controller.getRow());
         }
     }
 }
