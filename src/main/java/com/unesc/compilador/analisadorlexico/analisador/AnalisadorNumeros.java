@@ -25,6 +25,7 @@ public class AnalisadorNumeros extends AnalisadorExpressao {
             char next = controller.getNext();
 
             if (!matchRegex(next) && next != '.' && next != '-') {
+                controller.back();
                 break;
             }
             if (next == '.') {
@@ -42,9 +43,6 @@ public class AnalisadorNumeros extends AnalisadorExpressao {
             buffer.append(next);
         }
 
-        if (controller.hasNext()) {
-            controller.back();
-        }
         this.validate(buffer.toString(), isReal, controller);
         return new Token(
                 buffer.toString(),

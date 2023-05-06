@@ -40,10 +40,11 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
     public Token analisar(PointerController controller) {
         StringBuilder buffer = new StringBuilder();
 
-        while (controller.hasNext() && buffer.length() <= 2) {
+        while (controller.hasNext() && buffer.length() < 2) {
             char token = controller.getNext();
 
             if (!matchRegex(token)) {
+                controller.back();
                 break;
             }
             if (token == '-' && controller.hasNext()) {
@@ -57,10 +58,6 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
             }
 
             buffer.append(token);
-        }
-
-        if (controller.hasNext()) {
-            controller.back();
         }
 
         Integer codigo = tokensSimples.get(buffer.toString());

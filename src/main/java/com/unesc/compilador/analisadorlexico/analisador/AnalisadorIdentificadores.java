@@ -53,14 +53,11 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
             char next = controller.getNext();
 
             if (!matchRegex(next) && !Character.isDigit(next)) {
+                controller.back();
                 break;
             }
 
             buffer.append(next);
-        }
-
-        if (controller.hasNext()) {
-            controller.back();
         }
 
         Integer codigoToken = palavrasReservadas.getOrDefault(buffer.toString(), IDENTIFICADOR_CODE);
