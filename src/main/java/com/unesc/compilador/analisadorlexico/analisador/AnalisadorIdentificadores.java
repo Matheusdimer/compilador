@@ -82,9 +82,5 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
         if (identificador.length() > 20) {
             throw new RegraLexaException("Identificadores não podem ter mais que 20 caracteres.", identificador, controller.getRow());
         }
-
-        if (!identificador.matches("[a-zA-Z]")) {
-            throw new RegraLexaException("Identificadores não podem ter caracteres especiais.", identificador, controller.getRow());
-        }
     }
 }
