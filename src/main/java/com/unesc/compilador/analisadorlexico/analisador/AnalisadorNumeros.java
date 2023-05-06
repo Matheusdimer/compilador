@@ -33,6 +33,7 @@ public class AnalisadorNumeros extends AnalisadorExpressao {
                     char next2 = controller.getNext();
                     controller.back();
                     if (next2 == '.') {
+                        controller.back();
                         break;
                     } else {
                         isReal = true;
