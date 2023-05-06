@@ -17,11 +17,17 @@ public class AnalisadorComentario extends AnalisadorExpressao {
         char next = controller.getNext();
 
         if (next == '#') {
-            while (controller.hasNext() && controller.getNext() != '#') {
-                char nextOfNext = controller.getNext();
+            while (controller.hasNext()) {
+                if (controller.getNext() == '#') {
+                    if (!controller.hasNext()) {
+                        break;
+                    }
 
-                if (nextOfNext == '#') {
-                    break;
+                    char nextOfNext = controller.getNext();
+
+                    if (nextOfNext == '#') {
+                        break;
+                    }
                 }
             }
         } else {
