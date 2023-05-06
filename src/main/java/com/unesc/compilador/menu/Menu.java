@@ -7,8 +7,6 @@ import com.unesc.compilador.analisadorlexico.base.Token;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.undo.CannotUndoException;
