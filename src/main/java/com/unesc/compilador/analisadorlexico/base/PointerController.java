@@ -32,7 +32,7 @@ public class PointerController {
     public void back() {
         pointer--;
 
-        if (string[pointer] == '\n') {
+        if (pointer >= 0 && string[pointer] == '\n') {
             row--;
         }
     }
