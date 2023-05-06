@@ -31,10 +31,10 @@ public class PointerController {
 
     public void back() {
         pointer--;
-    }
 
-    public void back(int quantity) {
-        pointer -= quantity;
+        if (string[pointer] == '\n') {
+            row--;
+        }
     }
 
     public void restoreTo(int pointer) {
