@@ -52,7 +52,7 @@ public class AnalisadorIdentificadores extends AnalisadorExpressao {
         while (controller.hasNext()) {
             char next = controller.getNext();
 
-            if (!matchRegex(next)) {
+            if (!matchRegex(next) && !Character.isDigit(next)) {
                 break;
             }
 
