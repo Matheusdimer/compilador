@@ -30,11 +30,11 @@ public class PointerController {
     }
 
     public void back() {
-        pointer--;
-
         if (pointer >= 0 && string[pointer] == '\n') {
             row--;
         }
+
+        pointer--;
     }
 
     public void restoreTo(int pointer) {
