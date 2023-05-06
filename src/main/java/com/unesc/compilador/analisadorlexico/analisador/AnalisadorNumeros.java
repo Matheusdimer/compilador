@@ -54,25 +54,29 @@ public class AnalisadorNumeros extends AnalisadorExpressao {
     }
 
     private void validate(String numero, Boolean isReal, PointerController controller) {
-        if (isReal) {
-            double v = Double.parseDouble(numero);
-            if (v > 10000) {
-                throw new RegraLexaException("Números reais não podem ser maiores que 10000.", numero, controller.getRow());
+        try {
+            if (isReal) {
+                double v = Double.parseDouble(numero);
+                if (v > 10000) {
+                    throw new RegraLexaException("Números reais não podem ser maiores que 10000.", numero, controller.getRow());
+                }
+                if (v < 0) {
+                    throw new RegraLexaException("Números reais não podem ser menores que 0.", numero, controller.getRow());
+                }
+                if (numero.split("\\.")[1].length() > 2) {
+                    throw new RegraLexaException("Números reais não podem ter mais que 2 casas decimais.", numero, controller.getRow());
+                }
+            } else {
+                int num = Integer.parseInt(numero);
+                if (num > 10000) {
+                    throw new RegraLexaException("Números inteiros não podem ser maiores que 10000.", numero, controller.getRow());
+                }
+                if (num < 0) {
+                    throw new RegraLexaException("Números inteiros não podem ser menores que 0.", numero, controller.getRow());
+                }
             }
-            if (v < 0) {
-                throw new RegraLexaException("Números reais não podem ser menores que 0.", numero, controller.getRow());
-            }
-            if (numero.split("\\.")[1].length() > 2) {
-                throw new RegraLexaException("Números reais não podem ter mais que 2 casas decimais.", numero, controller.getRow());
-            }
-        } else {
-            int num = Integer.parseInt(numero);
-            if (num > 10000) {
-                throw new RegraLexaException("Números inteiros não podem ser maiores que 10000.", numero, controller.getRow());
-            }
-            if (num < 0) {
-                throw new RegraLexaException("Números inteiros não podem ser menores que 0.", numero, controller.getRow());
-            }
+        } catch (NumberFormatException e) {
+            throw new RegraLexaException("Número mal formatado.", numero, controller.getRow());
         }
     }
 }
