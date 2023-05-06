@@ -7,7 +7,10 @@ import com.unesc.compilador.analisadorlexico.base.Token;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 import javax.swing.text.Element;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +21,7 @@ public class Menu extends JFrame implements ActionListener {
     private final JTextArea lines;
     private final JButton button;
     private final JScrollPane jsp;
+    private final UndoManager undo = new UndoManager();
     private Resultado resultado;
 
     public Menu() {
@@ -25,40 +29,10 @@ public class Menu extends JFrame implements ActionListener {
         jsp = new JScrollPane();
         textArea = new JTextArea();
         lines = new JTextArea("1");
-        lines.setBackground(Color.LIGHT_GRAY);
-        lines.setEditable(false);
-        //  Code to implement line numbers inside the JTextArea
-        textArea.getDocument().addDocumentListener(new DocumentListener() {
-            public String getText() {
-                int caretPosition = textArea.getDocument().getLength();
-                Element root = textArea.getDocument().getDefaultRootElement();
-                String text = "1" + System.getProperty("line.separator");
-                for(int i = 2; i < root.getElementIndex(caretPosition) + 2; i++) {
-                    text += i + System.getProperty("line.separator");
-                }
-                return text;
-            }
-            @Override
-            public void changedUpdate(DocumentEvent de) {
-                lines.setText(getText());
-            }
-            @Override
-            public void insertUpdate(DocumentEvent de) {
-                lines.setText(getText());
-            }
-            @Override
-            public void removeUpdate(DocumentEvent de) {
-                lines.setText(getText());
-            }
-        });
-        jsp.getViewport().add(textArea);
-        jsp.setRowHeaderView(lines);
-        add(jsp);
+        button = new JButton("Analisar");
+        this.configure();
         setSize(800, 600);
 
-
-
-        button = new JButton("Analisar");
         button.addActionListener(this);
 
         JPanel panel = new JPanel();
@@ -90,5 +64,49 @@ public class Menu extends JFrame implements ActionListener {
         finally {
             button.setEnabled(true);
         }
+    }
+
+    private void configure() {
+        lines.setBackground(Color.LIGHT_GRAY);
+        lines.setEditable(false);
+        Document doc = textArea.getDocument();
+        doc.addUndoableEditListener(evt -> undo.addEdit(evt.getEdit()));
+        textArea.getActionMap().put("Undo", new AbstractAction("Undo") {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    if (undo.canUndo()) {
+                        undo.undo();
+                    }
+                } catch (CannotUndoException e) {
+                }
+            }
+        });
+        textArea.getInputMap().put(KeyStroke.getKeyStroke("control Z"), "Undo");
+        textArea.getDocument().addDocumentListener(new DocumentListener() {
+            public String getText() {
+                int caretPosition = textArea.getDocument().getLength();
+                Element root = textArea.getDocument().getDefaultRootElement();
+                String text = "1" + System.getProperty("line.separator");
+                for(int i = 2; i < root.getElementIndex(caretPosition) + 2; i++) {
+                    text += i + System.getProperty("line.separator");
+                }
+                return text;
+            }
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                lines.setText(getText());
+            }
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+                lines.setText(getText());
+            }
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                lines.setText(getText());
+            }
+        });
+        jsp.getViewport().add(textArea);
+        jsp.setRowHeaderView(lines);
+        add(jsp);
     }
 }
