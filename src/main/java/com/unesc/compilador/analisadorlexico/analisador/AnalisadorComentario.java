@@ -14,26 +14,28 @@ public class AnalisadorComentario extends AnalisadorExpressao {
     @Override
     public Token analisar(PointerController controller) {
         controller.getNext();
-        char next = controller.getNext();
+        if (controller.hasNext()) {
+            char next = controller.getNext();
 
-        if (next == '#') {
-            while (controller.hasNext()) {
-                if (controller.getNext() == '#') {
-                    if (!controller.hasNext()) {
-                        break;
-                    }
+            if (next == '#') {
+                while (controller.hasNext()) {
+                    if (controller.getNext() == '#') {
+                        if (!controller.hasNext()) {
+                            break;
+                        }
 
-                    char nextOfNext = controller.getNext();
+                        char nextOfNext = controller.getNext();
 
-                    if (nextOfNext == '#') {
-                        break;
+                        if (nextOfNext == '#') {
+                            break;
+                        }
                     }
                 }
+            } else {
+                controller.back();
+                while (controller.hasNext() && controller.getNext() != '\n');
             }
-        } else {
-            while (controller.hasNext() && controller.getNext() != '\n');
         }
-
         return null;
     }
 }
