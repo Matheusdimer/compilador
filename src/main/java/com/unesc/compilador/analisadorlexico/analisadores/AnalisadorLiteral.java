@@ -1,4 +1,4 @@
-package com.unesc.compilador.analisadorlexico.analisador;
+package com.unesc.compilador.analisadorlexico.analisadores;
 
 import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;

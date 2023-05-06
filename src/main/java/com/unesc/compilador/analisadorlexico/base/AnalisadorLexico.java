@@ -1,6 +1,6 @@
 package com.unesc.compilador.analisadorlexico.base;
 
-import com.unesc.compilador.analisadorlexico.analisador.*;
+import com.unesc.compilador.analisadorlexico.analisadores.*;
 
 import java.util.LinkedList;
 import java.util.List;
