@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Menu extends JFrame implements ActionListener {
     private final JTextArea textArea;
@@ -55,7 +54,7 @@ public class Menu extends JFrame implements ActionListener {
         jsp.getViewport().add(textArea);
         jsp.setRowHeaderView(lines);
         add(jsp);
-        setSize(400, 275);
+        setSize(800, 600);
 
 
 
