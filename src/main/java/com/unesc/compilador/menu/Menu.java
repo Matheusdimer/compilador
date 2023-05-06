@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Menu extends JFrame implements ActionListener {
-    private JTextArea textArea;
-    private JButton button;
+    private final JTextArea textArea;
+    private final JButton button;
 
     public Menu() {
         super("Digite o código");
@@ -40,11 +40,8 @@ public class Menu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         button.setEnabled(false);
         try {
-            List<Token> analises = new AnalisadorLexico().analisar(textArea.getText());
-            analises.forEach(System.out::println);
-            JOptionPane.showMessageDialog(this, analises.stream()
-                    .map(Token::toString)
-                    .collect(Collectors.joining("\n")));
+            List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
+            new Resultado(tokens);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
