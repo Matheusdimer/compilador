@@ -31,6 +31,44 @@ public class Menu extends JFrame implements ActionListener {
         jsp = new JScrollPane();
         textArea = new JTextArea();
         lines = new JTextArea("1");
+        button = new JButton("Analisar");
+        this.configure();
+        setSize(800, 600);
+
+        button.addActionListener(this);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(jsp, BorderLayout.CENTER);
+        panel.add(button, BorderLayout.SOUTH);
+
+        setContentPane(panel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        button.setEnabled(false);
+        try {
+            List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
+            if (resultado != null) {
+                resultado.setVisible(false);
+            }
+            resultado = new Resultado(tokens);
+        } catch (RegraLexaException exception) {
+            String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
+                    exception.getLinha(), exception.getToken(), exception.getMessage());
+            JOptionPane.showMessageDialog(this, mensagem, "Erro léxico", JOptionPane.ERROR_MESSAGE);
+            exception.printStackTrace();
+        }
+        finally {
+            button.setEnabled(true);
+        }
+    }
+
+    private void configure() {
         lines.setBackground(Color.LIGHT_GRAY);
         lines.setEditable(false);
         Document doc = textArea.getDocument();
@@ -72,39 +110,5 @@ public class Menu extends JFrame implements ActionListener {
         jsp.getViewport().add(textArea);
         jsp.setRowHeaderView(lines);
         add(jsp);
-        setSize(800, 600);
-
-        button = new JButton("Analisar");
-        button.addActionListener(this);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.add(jsp, BorderLayout.CENTER);
-        panel.add(button, BorderLayout.SOUTH);
-
-        setContentPane(panel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        button.setEnabled(false);
-        try {
-            List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            if (resultado != null) {
-                resultado.setVisible(false);
-            }
-            resultado = new Resultado(tokens);
-        } catch (RegraLexaException exception) {
-            String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
-                    exception.getLinha(), exception.getToken(), exception.getMessage());
-            JOptionPane.showMessageDialog(this, mensagem, "Erro léxico", JOptionPane.ERROR_MESSAGE);
-            exception.printStackTrace();
-        }
-        finally {
-            button.setEnabled(true);
-        }
     }
 }
