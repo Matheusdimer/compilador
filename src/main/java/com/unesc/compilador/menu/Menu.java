@@ -54,7 +54,9 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            new AnalisadorSintatico().analisar(new Gramatica(), tokens.stream().map(Token::getCodigo).collect(Collectors.toList()));
+            boolean valid = new AnalisadorSintatico().analisar(new Gramatica(), tokens.stream().map(Token::getCodigo).collect(Collectors.toList()));
+
+            System.out.println("Gramática válida: " + valid);
 
 
 //            if (resultado != null) {

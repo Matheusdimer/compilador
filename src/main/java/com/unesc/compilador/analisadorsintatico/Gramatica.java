@@ -239,10 +239,10 @@ public class Gramatica implements IGramatica {
 	}
 
 	public int get$() {
-		return 5;
+		return 52;
 	}
 
 	public int getVazio() {
-		return 1;
+		return 22;
 	}
 }
