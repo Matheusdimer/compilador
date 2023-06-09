@@ -30,7 +30,7 @@ public class AnalisadorChar extends AnalisadorExpressao {
                     "porém foi dado o caractere '" + char3 + "'.", token, controller.getRow());
         }
 
-        return new Token(token, 39, controller.getRow());
+        return new Token(token, 17, controller.getRow());
     }
 
     private void checarTerminoInesperado(PointerController controller, char character) {

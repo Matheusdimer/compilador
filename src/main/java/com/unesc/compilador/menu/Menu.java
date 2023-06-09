@@ -3,6 +3,8 @@ package com.unesc.compilador.menu;
 import com.unesc.compilador.analisadorlexico.base.AnalisadorLexico;
 import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
+import com.unesc.compilador.analisadorsintatico.AnalisadorSintatico;
+import com.unesc.compilador.analisadorsintatico.Gramatica;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -15,6 +17,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Menu extends JFrame implements ActionListener {
     private final JTextArea textArea;
@@ -51,10 +54,13 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            if (resultado != null) {
-                resultado.setVisible(false);
-            }
-            resultado = new Resultado(tokens);
+            new AnalisadorSintatico().analisar(new Gramatica(), tokens.stream().map(Token::getCodigo).collect(Collectors.toList()));
+
+
+//            if (resultado != null) {
+//                resultado.setVisible(false);
+//            }
+//            resultado = new Resultado(tokens);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());

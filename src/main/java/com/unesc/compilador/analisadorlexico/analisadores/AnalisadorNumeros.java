@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 public class AnalisadorNumeros extends AnalisadorExpressao {
 
-    private static final int IDENTIFICADOR_INT_CODE = 37;
-    private static final int IDENTIFICADOR_REAL_CODE = 36;
+    private static final int IDENTIFICADOR_INT_CODE = 15;
+    private static final int IDENTIFICADOR_REAL_CODE = 14;
 
     public AnalisadorNumeros() {
         super(3, Pattern.compile("[0-9]"));

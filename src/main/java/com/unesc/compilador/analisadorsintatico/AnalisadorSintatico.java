@@ -6,16 +6,6 @@ import java.util.List;
 import java.util.Stack;
 
 public class AnalisadorSintatico {
-    public static void main(String[] args) {
-        AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-        boolean valid = analisadorSintatico.analisar(
-                new GramaticaSimples(),
-                Arrays.asList(2, 3, 2, 4)
-        );
-
-        System.out.println("Gramática válida: " + valid);
-    }
-
     public boolean analisar(IGramatica gramatica, List<Integer> tokens) {
         Stack<Integer> producoes = new Stack<>();
         Stack<Integer> entradas = new Stack<>();

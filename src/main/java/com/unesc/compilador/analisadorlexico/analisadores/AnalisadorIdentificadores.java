@@ -11,38 +11,38 @@ import java.util.regex.Pattern;
 
 public class AnalisadorIdentificadores extends AnalisadorExpressao {
 
-    private static final int IDENTIFICADOR_CODE = 16;
+    private static final int IDENTIFICADOR_CODE = 21;
 
     private final Map<String, Integer> palavrasReservadas = new HashMap<>();
 
     public AnalisadorIdentificadores() {
         super(2, Pattern.compile("[a-zA-Z]"));
-        palavrasReservadas.put("write", 0);
-        palavrasReservadas.put("while", 1);
-        palavrasReservadas.put("until", 2);
-        palavrasReservadas.put("to", 3);
-        palavrasReservadas.put("then", 4);
-        palavrasReservadas.put("repeat", 6);
-        palavrasReservadas.put("real", 7);
-        palavrasReservadas.put("read", 8);
-        palavrasReservadas.put("program", 9);
-        palavrasReservadas.put("procedure", 10);
-        palavrasReservadas.put("or", 11);
-        palavrasReservadas.put("of", 12);
-        palavrasReservadas.put("if", 15);
-        palavrasReservadas.put("for", 18);
-        palavrasReservadas.put("end", 19);
-        palavrasReservadas.put("else", 20);
-        palavrasReservadas.put("do", 21);
-        palavrasReservadas.put("declaravariaveis", 22);
-        palavrasReservadas.put("const", 23);
-        palavrasReservadas.put("char", 24);
-        palavrasReservadas.put("chamaprocedure", 25);
-        palavrasReservadas.put("begin", 26);
-        palavrasReservadas.put("array", 27);
-        palavrasReservadas.put("and", 28);
-        palavrasReservadas.put("integer", 14);
-        palavrasReservadas.put("string", 5);
+        palavrasReservadas.put("write", 1);
+        palavrasReservadas.put("while", 2);
+        palavrasReservadas.put("until", 3);
+        palavrasReservadas.put("to", 4);
+        palavrasReservadas.put("then", 5);
+        palavrasReservadas.put("repeat", 7);
+        palavrasReservadas.put("real", 8);
+        palavrasReservadas.put("read", 9);
+        palavrasReservadas.put("program", 10);
+        palavrasReservadas.put("procedure", 11);
+        palavrasReservadas.put("or", 12);
+        palavrasReservadas.put("of", 13);
+        palavrasReservadas.put("if", 20);
+        palavrasReservadas.put("for", 23);
+        palavrasReservadas.put("end", 24);
+        palavrasReservadas.put("else", 25);
+        palavrasReservadas.put("do", 26);
+        palavrasReservadas.put("declaravariaveis", 27);
+        palavrasReservadas.put("const", 28);
+        palavrasReservadas.put("char", 29);
+        palavrasReservadas.put("chamaprocedure", 30);
+        palavrasReservadas.put("begin", 31);
+        palavrasReservadas.put("array", 32);
+        palavrasReservadas.put("and", 33);
+        palavrasReservadas.put("integer", 19);
+        palavrasReservadas.put("string", 6);
     }
 
     @Override

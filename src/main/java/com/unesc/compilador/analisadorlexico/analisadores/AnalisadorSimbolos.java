@@ -15,25 +15,25 @@ public class AnalisadorSimbolos extends AnalisadorExpressao {
 
     public AnalisadorSimbolos() {
         super(10, Pattern.compile("[^a-zA-Z0-9\\s]*$"));
-        tokensSimples.put("=", 31);
-        tokensSimples.put(">", 30);
-        tokensSimples.put("<", 34);
-        tokensSimples.put(">=", 29);
-        tokensSimples.put("<=", 33);
-        tokensSimples.put("<>", 32);
-        tokensSimples.put("..", 45);
-        tokensSimples.put("+", 35);
-        tokensSimples.put("]", 40);
-        tokensSimples.put("[", 41);
-        tokensSimples.put(";", 42);
-        tokensSimples.put(":", 43);
-        tokensSimples.put("/", 44);
-        tokensSimples.put(",", 47);
-        tokensSimples.put("*", 48);
-        tokensSimples.put(")", 49);
-        tokensSimples.put("(", 50);
-        tokensSimples.put("-", 52);
-        tokensSimples.put(".", 46);
+        tokensSimples.put(">=", 34);
+        tokensSimples.put(">", 35);
+        tokensSimples.put("=", 36);
+        tokensSimples.put("<>", 37);
+        tokensSimples.put("<=", 38);
+        tokensSimples.put("<", 39);
+        tokensSimples.put("+", 40);
+        tokensSimples.put("]", 41);
+        tokensSimples.put("[", 42);
+        tokensSimples.put(";", 43);
+        tokensSimples.put(":", 44);
+        tokensSimples.put("/", 45);
+        tokensSimples.put("..", 46);
+        tokensSimples.put(".", 47);
+        tokensSimples.put(",", 48);
+        tokensSimples.put("*", 49);
+        tokensSimples.put(")", 50);
+        tokensSimples.put("(", 51);
+        tokensSimples.put("-", 53);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.unesc.compilador.analisadorsintatico;
 
-public class Gramatica {
+public class Gramatica implements IGramatica {
 	private final int[][] tabParsing = new int[83][54];
 
 	//inicializar as produções
@@ -81,7 +81,7 @@ public class Gramatica {
 		{22,0,0,0,0,0,0,0,0,0,0,0,0,0},//P74
 	};;
 
-	Gramatica(){
+	public Gramatica(){
 
 		//inicializar a Matriz de Parsing com zeros.
 		for(int i=0; i<83; i++){
@@ -228,5 +228,21 @@ public class Gramatica {
 		tabParsing[80][53] = 60;
 		tabParsing[82][48] = 73;
 		tabParsing[82][50] = 74;
+	}
+
+	public int[] getProducao(int numero) {
+		return producoes[numero - 1];
+	}
+
+	public int parse(int producao, int token) {
+		return tabParsing[producao][token];
+	}
+
+	public int get$() {
+		return 5;
+	}
+
+	public int getVazio() {
+		return 1;
 	}
 }
