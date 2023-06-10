@@ -28,7 +28,7 @@ public class AnalisadorSintatico {
             System.out.println("-------------------------------------------------");
 
             int producao = producoes.pop();
-            int entrada = entradas.pop();
+            int entrada = entradas.pop() + 1;
 
             if (producao == entrada) {
                 continue;
