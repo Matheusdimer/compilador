@@ -1,5 +1,7 @@
 package com.unesc.compilador.analisadorsintatico;
 
+import com.unesc.compilador.TokenParser;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -39,14 +41,14 @@ public class AnalisadorSintatico {
             }
 
             if (producao == gramatica.get$()) {
-                System.out.println("Token " + entrada + " inesperado. Esperado final do código.");
+                System.out.println("Token " + TokenParser.get(entrada) + " inesperado. Esperado final do código.");
                 return false;
             }
 
             int numProximaProducao = gramatica.parse(producao, entrada);
 
             if (numProximaProducao == 0) {
-                System.out.println("Token " + entrada + " inesperado. Esperado token " + producao);
+                System.out.println("Token " + TokenParser.get(entrada) + " inesperado. Esperado token " + TokenParser.get(producao));
                 return false;
             }
 
