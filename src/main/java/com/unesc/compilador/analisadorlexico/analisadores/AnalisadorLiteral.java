@@ -41,6 +41,6 @@ public class AnalisadorLiteral extends AnalisadorExpressao {
         }
         buffer.append("\"");
 
-        return new Token(buffer.toString(), 18, controller.getRow());
+        return new Token(buffer.toString(), 13, controller.getRow());
     }
 }
