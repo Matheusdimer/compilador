@@ -64,7 +64,7 @@ public class TokenParser {
     }
 
     public static String get(Integer token) {
-        return palavrasReservadas.get(token);
+        return palavrasReservadas.getOrDefault(token, String.valueOf(token));
     }
 
 }
