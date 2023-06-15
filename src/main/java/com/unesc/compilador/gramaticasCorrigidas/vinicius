@@ -1,0 +1,58 @@
+program analisadorLexico;
+
+const
+nome2 = string;
+sexo2 = char;
+idade2 = integer;
+salario2 = real;
+
+declaravariaveis
+nome: string;
+sexo: char;
+idade: integer;
+salario: real;
+
+begin
+write("Preencher formulario");
+write("Nome: ");
+read(nome);
+
+write("Sexo: ");
+read(sexo);
+
+write("CPF: ");
+read(cpf);
+
+write("Idade: ");
+read(idade);
+
+write("Salário: ");
+read(salario);
+
+write("Formulario");
+write("Nome....: ",nome);
+write("Sexo....: ",sexo);
+write("CPF.....: ",cpf);
+write("Idade...: ",idade);
+write("Salario.: ",salario);
+
+while [ idade < 18 ] do
+begin
+read(idade)
+end;
+if [ idade >= 18 ] then
+begin
+write("você é maior de idade, pode passar")
+end
+else
+begin
+ write("você é menor de idade, tente novamente")
+end
+
+end
+
+#comentario em linha
+##comentario
+em
+bloco##
+.

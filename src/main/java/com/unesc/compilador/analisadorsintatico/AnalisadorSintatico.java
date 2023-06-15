@@ -14,7 +14,9 @@ public class AnalisadorSintatico {
 
         // Empilha os tokens de trás para frente
         Collections.reverse(tokens);
-        tokens.forEach(entradas::push);
+        for (Integer token : tokens) {
+            entradas.push(token + 1);
+        }
 
         // Empilha o $
         producoes.push(gramatica.get$());
@@ -28,7 +30,7 @@ public class AnalisadorSintatico {
             System.out.println("-------------------------------------------------");
 
             int producao = producoes.pop();
-            int entrada = entradas.pop() + 1;
+            int entrada = entradas.pop();
 
             if (producao == entrada) {
                 continue;

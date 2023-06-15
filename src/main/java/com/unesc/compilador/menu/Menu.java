@@ -4,7 +4,7 @@ import com.unesc.compilador.analisadorlexico.base.AnalisadorLexico;
 import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 import com.unesc.compilador.analisadorsintatico.AnalisadorSintatico;
-import com.unesc.compilador.analisadorsintatico.Gramatica;
+import com.unesc.compilador.analisadorsintatico.GramaticaCerta;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -54,15 +54,8 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            boolean valid = new AnalisadorSintatico().analisar(new Gramatica(), tokens.stream().map(Token::getCodigo).collect(Collectors.toList()));
-
+            boolean valid = new AnalisadorSintatico().analisar(new GramaticaCerta(), tokens.stream().map(Token::getCodigo).collect(Collectors.toList()));
             System.out.println("Gramática válida: " + valid);
-
-
-//            if (resultado != null) {
-//                resultado.setVisible(false);
-//            }
-//            resultado = new Resultado(tokens);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
