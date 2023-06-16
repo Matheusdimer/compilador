@@ -1,6 +1,7 @@
 package com.unesc.compilador.analisadorsintatico;
 
 import com.unesc.compilador.TokenParser;
+import com.unesc.compilador.analisadorlexico.base.Token;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,14 +9,14 @@ import java.util.List;
 import java.util.Stack;
 
 public class AnalisadorSintatico {
-    public boolean analisar(IGramatica gramatica, List<Integer> tokens) {
+    public boolean analisar(IGramatica gramatica, List<Token> tokens) {
         Stack<Integer> producoes = new Stack<>();
-        Stack<Integer> entradas = new Stack<>();
+        Stack<Token> entradas = new Stack<>();
 
         // Empilha os tokens de trás para frente
         Collections.reverse(tokens);
-        for (Integer token : tokens) {
-            entradas.push(token + 1);
+        for (Token token : tokens) {
+            entradas.push(token);
         }
 
         // Empilha o $
@@ -30,9 +31,9 @@ public class AnalisadorSintatico {
             System.out.println("-------------------------------------------------");
 
             int producao = producoes.pop();
-            int entrada = entradas.pop();
-
-            if (producao == entrada) {
+            Token entrada = entradas.pop();
+            int tokenEntrada = entrada.getCodigo() + 1;
+            if (producao == tokenEntrada) {
                 continue;
             }
 
@@ -43,14 +44,16 @@ public class AnalisadorSintatico {
             }
 
             if (producao == gramatica.get$()) {
-                System.out.println("Token " + TokenParser.get(entrada) + " inesperado. Esperado final do código.");
+                System.out.println("Token " + TokenParser.get(tokenEntrada) + " inesperado. Esperado final do código.");
+                System.out.println("Linha do erro: " + (entrada.getLinha()));
                 return false;
             }
 
-            int numProximaProducao = gramatica.parse(producao, entrada);
+            int numProximaProducao = gramatica.parse(producao, tokenEntrada);
 
             if (numProximaProducao == 0) {
-                System.out.println("Token " + TokenParser.get(entrada) + " inesperado. Esperado token " + TokenParser.get(producao));
+                System.out.println("Token " + TokenParser.get(tokenEntrada) + " inesperado. Esperado token " + TokenParser.get(producao));
+                System.out.println("Linha do erro: " + (entrada.getLinha()));
                 return false;
             }
 

@@ -54,7 +54,7 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            boolean valid = new AnalisadorSintatico().analisar(new GramaticaCerta(), tokens.stream().map(Token::getCodigo).collect(Collectors.toList()));
+            boolean valid = new AnalisadorSintatico().analisar(new GramaticaCerta(), tokens);
             System.out.println("Gramática válida: " + valid);
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
