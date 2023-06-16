@@ -1,0 +1,41 @@
+program testeAnalisador;
+
+declaravariaveis
+    nome: string;
+    cpf: string;
+    idade: integer;
+    salario: real;
+    rg: string;
+    tags: array[1..10] of string;
+begin
+    # entrada de dados do usuário
+    write("Digite seu nome: ");
+    read(nome);
+
+    write("Digite seu CPF: ");
+    read(cpf);
+
+    write("Sua idade: ");
+    read(idade);
+
+    write("Salário: ");
+    read(salario);
+
+    ## Desnecessário
+    write("RG: ");
+    read(rg);
+    ##
+
+    # printa o nome
+    write(nome + ", ");
+
+    if [ salario >= 10000 ] then
+    begin
+        write("você é um gênio")
+    end
+    else
+    begin
+        write("estude mais")
+    end
+end
+.
