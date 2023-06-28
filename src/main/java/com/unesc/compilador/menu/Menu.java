@@ -1,10 +1,13 @@
 package com.unesc.compilador.menu;
 
 import com.unesc.compilador.analisadorlexico.base.AnalisadorLexico;
-import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
+import com.unesc.compilador.exceptions.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 import com.unesc.compilador.analisadorsintatico.AnalisadorSintatico;
 import com.unesc.compilador.analisadorsintatico.GramaticaCerta;
+import com.unesc.compilador.analisadrosemantico.AnalisadorSemantico;
+import com.unesc.compilador.exceptions.RegraSemanticaException;
+import com.unesc.compilador.exceptions.RegraSintaticaException;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -16,8 +19,8 @@ import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Menu extends JFrame implements ActionListener {
     private final JTextArea textArea;
@@ -54,12 +57,26 @@ public class Menu extends JFrame implements ActionListener {
         button.setEnabled(false);
         try {
             List<Token> tokens = new AnalisadorLexico().analisar(textArea.getText());
-            boolean valid = new AnalisadorSintatico().analisar(new GramaticaCerta(), tokens);
-            System.out.println("Gramática válida: " + valid);
+            new AnalisadorSintatico().analisar(new GramaticaCerta(), new ArrayList<>(tokens));
+            new AnalisadorSemantico().analisar(new ArrayList<>(tokens));
         } catch (RegraLexaException exception) {
             String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
                     exception.getLinha(), exception.getToken(), exception.getMessage());
             JOptionPane.showMessageDialog(this, mensagem, "Erro léxico", JOptionPane.ERROR_MESSAGE);
+            exception.printStackTrace();
+        } catch (RegraSintaticaException exception) {
+            String mensagem = "";
+            if (exception.getLinha() == 0) {
+                mensagem = String.format("Mensagem: %s",exception.getMessage());
+            } else {
+                mensagem = String.format("Linha: %d\nMensagem: %s",exception.getLinha(), exception.getMessage());
+            }
+            JOptionPane.showMessageDialog(this, mensagem, "Erro sintatico", JOptionPane.ERROR_MESSAGE);
+            exception.printStackTrace();
+        } catch (RegraSemanticaException exception) {
+            String mensagem = String.format("Linha: %d\nToken: %s\nMensagem: %s",
+                    exception.getLinha(), exception.getToken(), exception.getMessage());
+            JOptionPane.showMessageDialog(this, mensagem, "Erro Semântico", JOptionPane.ERROR_MESSAGE);
             exception.printStackTrace();
         }
         finally {

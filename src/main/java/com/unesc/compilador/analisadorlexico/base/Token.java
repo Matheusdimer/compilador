@@ -27,4 +27,8 @@ public class Token {
     public String toString() {
         return Integer.toString(codigo);
     }
+
+    public boolean isThisCodigo(int x) {
+        return codigo == x;
+    }
 }

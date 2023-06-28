@@ -120,6 +120,7 @@ public class GramaticaCerta implements IGramatica {
 		tabParsing[60][28] = 14;
 		tabParsing[61][17] = 5;
 		tabParsing[61][23] = 6;
+		tabParsing[61][26] = 6;
 		tabParsing[61][47] = 6;
 		tabParsing[62][17] = 9;
 		tabParsing[63][17] = 12;

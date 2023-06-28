@@ -1,4 +1,4 @@
-package com.unesc.compilador.analisadorlexico.base;
+package com.unesc.compilador.exceptions;
 
 public class RegraLexaException extends RuntimeException {
 

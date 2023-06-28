@@ -2,7 +2,7 @@ package com.unesc.compilador.analisadorlexico.analisadores;
 
 import com.unesc.compilador.analisadorlexico.base.AnalisadorExpressao;
 import com.unesc.compilador.analisadorlexico.base.PointerController;
-import com.unesc.compilador.analisadorlexico.base.RegraLexaException;
+import com.unesc.compilador.exceptions.RegraLexaException;
 import com.unesc.compilador.analisadorlexico.base.Token;
 
 import java.util.HashMap;
