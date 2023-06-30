@@ -1,0 +1,33 @@
+program analisadorLexico;
+
+# perguntando nome da pessoa
+begin
+write("Digite seu nome: ");
+read(nome);
+
+##
+isto deve ser ignorado
+write
+$$$$$$$$$$$$$$$$$$$$$$$$$$$
+##
+
+write("Digite sua idade ");
+read(idade);
+
+write("Digite seu Salário ");
+read(salario);
+
+write("Olá  " , nome);
+write("Aparentemente você tem " , idade , " anos e ganha " , salario , ", que legal!");
+
+#SE A IDADE FOR MAIOR QUE 25 E O SALARIO MAIOR QUE 5000 ENTAO GANHA BEM
+if [ salario >= 10000.00] then
+begin
+   write("Você ganha muito bem")
+end
+else
+begin
+   write("Você não ganha muito bem")
+end
+end
+.
